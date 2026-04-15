@@ -1,0 +1,13 @@
+
+# Временные файлы покрытия и компиляции
+*.gcno
+*.gcda
+*.gcov
+*.o
+coverage_report/
+coverage.info
+runner_*
+cmd_line/
+*.png
+*.css
+*.html
