@@ -29,27 +29,22 @@ void show_menu(int role) {
 
 int main() {
     char username[50], password[50];
-    
     printf("=== Autopark Login ===\n");
     printf("Username: ");
     scanf("%s", username);
     printf("Password: ");
     scanf("%s", password);
-    
     if (!login(username, password)) {
         printf("Login failed!\n");
         return 1;
     }
-    
     int role = get_current_user_role();
-    printf("Login successful! Role: %d\n", role);
-    
+    printf("Login successful!\n");
     int choice;
     do {
         show_menu(role);
         printf("Choose: ");
         scanf("%d", &choice);
-        
         switch(choice) {
             case 1: list_cars(); break;
             case 2: list_drivers(); break;
@@ -65,6 +60,5 @@ int main() {
             case 12: if (role >= 3) reports_menu(); break;
         }
     } while (choice != 0);
-    
     return 0;
 }

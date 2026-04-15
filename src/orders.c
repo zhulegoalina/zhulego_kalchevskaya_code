@@ -14,7 +14,6 @@ void add_order() {
     char date[11];
     int driver_id, car_id, distance;
     float cargo_weight, cost;
-    
     printf("Enter date (YYYY-MM-DD): ");
     scanf("%s", date);
     printf("Enter driver ID: ");
@@ -27,11 +26,8 @@ void add_order() {
     scanf("%f", &cargo_weight);
     printf("Enter cost: ");
     scanf("%f", &cost);
-    
     sqlite3 *db;
     if (db_open("data/autopark.db", &db) != SQLITE_OK) return;
-    
-    // Проверка грузоподъёмности
     char check_sql[256];
     snprintf(check_sql, sizeof(check_sql), "SELECT load_capacity FROM cars WHERE id = %d;", car_id);
     float load_capacity = 0;
@@ -42,20 +38,16 @@ void add_order() {
         }
         sqlite3_finalize(stmt);
     }
-    
     if (cargo_weight > load_capacity) {
         printf("Error: Cargo weight %.2f exceeds car load capacity %.2f\n", cargo_weight, load_capacity);
         db_close(db);
         return;
     }
-    
     float driver_earnings = cost * 0.20;
-    
     char sql[1024];
     snprintf(sql, sizeof(sql),
              "INSERT INTO orders (order_date, driver_id, car_id, distance, cargo_weight, cost, driver_earnings) VALUES ('%s', %d, %d, %d, %.2f, %.2f, %.2f);",
              date, driver_id, car_id, distance, cargo_weight, cost, driver_earnings);
-    
     execute_query(db, sql);
     db_close(db);
     printf("Order added! Driver earnings: %.2f\n", driver_earnings);
@@ -65,10 +57,8 @@ void delete_order() {
     int id;
     printf("Enter order ID to delete: ");
     scanf("%d", &id);
-    
     sqlite3 *db;
     if (db_open("data/autopark.db", &db) != SQLITE_OK) return;
-    
     char sql[256];
     snprintf(sql, sizeof(sql), "DELETE FROM orders WHERE id = %d;", id);
     execute_query(db, sql);
