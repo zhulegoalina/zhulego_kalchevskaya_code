@@ -37,6 +37,36 @@ void add_car() {
     printf("Car added successfully!\n");
 }
 
+void update_car() {
+    int id;
+    char number[20], brand[50];
+    int mileage;
+    float capacity;
+    
+    printf("Enter car ID to update: ");
+    scanf("%d", &id);
+    printf("Enter new car number: ");
+    scanf("%s", number);
+    printf("Enter new brand: ");
+    scanf("%s", brand);
+    printf("Enter new mileage: ");
+    scanf("%d", &mileage);
+    printf("Enter new load capacity: ");
+    scanf("%f", &capacity);
+    
+    sqlite3 *db;
+    if (db_open("data/autopark.db", &db) != SQLITE_OK) return;
+    
+    char sql[512];
+    snprintf(sql, sizeof(sql),
+             "UPDATE cars SET car_number='%s', brand='%s', mileage=%d, load_capacity=%.2f WHERE id=%d;",
+             number, brand, mileage, capacity, id);
+    
+    execute_query(db, sql);
+    db_close(db);
+    printf("Car updated successfully!\n");
+}
+
 void delete_car() {
     int id;
     printf("Enter car ID to delete: ");

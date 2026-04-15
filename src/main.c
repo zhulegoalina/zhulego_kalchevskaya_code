@@ -5,7 +5,6 @@
 #include "drivers.h"
 #include "orders.h"
 #include "reports.h"
-#include "database.h"
 
 void show_menu(int role) {
     printf("\n=== Autopark Management ===\n");
@@ -16,12 +15,14 @@ void show_menu(int role) {
         printf("4. Add car\n");
         printf("5. Add driver\n");
         printf("6. Add order\n");
+        printf("7. Update car\n");
+        printf("8. Update driver\n");
     }
     if (role >= 3) {
-        printf("7. Delete car\n");
-        printf("8. Delete driver\n");
-        printf("9. Delete order\n");
-        printf("10. Reports\n");
+        printf("9. Delete car\n");
+        printf("10. Delete driver\n");
+        printf("11. Delete order\n");
+        printf("12. Reports\n");
     }
     printf("0. Exit\n");
 }
@@ -41,17 +42,7 @@ int main() {
     }
     
     int role = get_current_user_role();
-    printf("Login successful!\n");
-    
-    // Проверка подключения к БД и вывод данных
-    sqlite3 *db;
-    if (db_open("data/autopark.db", &db) == SQLITE_OK) {
-        printf("\n=== Drivers in database ===\n");
-        execute_query(db, "SELECT id, full_name, experience FROM drivers;");
-        db_close(db);
-    } else {
-        printf("Warning: Could not open database\n");
-    }
+    printf("Login successful! Role: %d\n", role);
     
     int choice;
     do {
@@ -66,10 +57,12 @@ int main() {
             case 4: if (role >= 2) add_car(); break;
             case 5: if (role >= 2) add_driver(); break;
             case 6: if (role >= 2) add_order(); break;
-            case 7: if (role >= 3) delete_car(); break;
-            case 8: if (role >= 3) delete_driver(); break;
-            case 9: if (role >= 3) delete_order(); break;
-            case 10: if (role >= 3) reports_menu(); break;
+            case 7: if (role >= 2) update_car(); break;
+            case 8: if (role >= 2) update_driver(); break;
+            case 9: if (role >= 3) delete_car(); break;
+            case 10: if (role >= 3) delete_driver(); break;
+            case 11: if (role >= 3) delete_order(); break;
+            case 12: if (role >= 3) reports_menu(); break;
         }
     } while (choice != 0);
     

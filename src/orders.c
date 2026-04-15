@@ -28,10 +28,28 @@ void add_order() {
     printf("Enter cost: ");
     scanf("%f", &cost);
     
-    float driver_earnings = cost * 0.20;
-    
     sqlite3 *db;
     if (db_open("data/autopark.db", &db) != SQLITE_OK) return;
+    
+    // Проверка грузоподъёмности
+    char check_sql[256];
+    snprintf(check_sql, sizeof(check_sql), "SELECT load_capacity FROM cars WHERE id = %d;", car_id);
+    float load_capacity = 0;
+    sqlite3_stmt *stmt;
+    if (sqlite3_prepare_v2(db, check_sql, -1, &stmt, 0) == SQLITE_OK) {
+        if (sqlite3_step(stmt) == SQLITE_ROW) {
+            load_capacity = (float)sqlite3_column_double(stmt, 0);
+        }
+        sqlite3_finalize(stmt);
+    }
+    
+    if (cargo_weight > load_capacity) {
+        printf("Error: Cargo weight %.2f exceeds car load capacity %.2f\n", cargo_weight, load_capacity);
+        db_close(db);
+        return;
+    }
+    
+    float driver_earnings = cost * 0.20;
     
     char sql[1024];
     snprintf(sql, sizeof(sql),
@@ -40,7 +58,7 @@ void add_order() {
     
     execute_query(db, sql);
     db_close(db);
-    printf("Order added successfully! Driver earnings: %.2f\n", driver_earnings);
+    printf("Order added! Driver earnings: %.2f\n", driver_earnings);
 }
 
 void delete_order() {

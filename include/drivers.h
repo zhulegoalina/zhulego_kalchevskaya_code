@@ -3,6 +3,7 @@
 
 void list_drivers();
 void add_driver();
+void update_driver();
 void delete_driver();
 
 #endif
