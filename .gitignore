@@ -11,3 +11,5 @@ cmd_line/
 *.png
 *.css
 *.html
+tests/runner_*
+bin/
