@@ -1,14 +1,110 @@
 <!DOCTYPE html>
-<html>
-<head><title>Автопарк</title><meta charset="utf-8"></head>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автопарк - Система управления</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #1a252f);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.1em; opacity: 0.9; }
+        .content { padding: 40px; }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+        .section:hover { transform: translateY(-5px); }
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+        }
+        .links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .links a {
+            display: block;
+            background: white;
+            padding: 15px;
+            text-decoration: none;
+            color: #2c3e50;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s;
+            text-align: center;
+            font-weight: 500;
+        }
+        .links a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.3);
+        }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8em; }
+            .content { padding: 20px; }
+        }
+    </style>
+</head>
 <body>
-<h1>Проект "Автопарк"</h1>
-<ul>
-<li><a href="glossary.html">Глоссарий</a></li>
-<li><a href="requirements.html">Требования</a></li>
-<li><a href="database.html">Схема БД</a></li>
-<li><a href="github-pages-course.html">Курс GitHub Pages</a></li>
-<li><a href="https://github.com/zhulegoalina/zhulego_kalchevskaya_code">Репозиторий с кодом</a></li>
-</ul>
+    <div class="container">
+        <div class="header">
+            <h1>🚚 Автопарк</h1>
+            <p>Система управления автопарком и грузоперевозками</p>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h2>📋 О проекте</h2>
+                <p>Консольное приложение на C для управления автопарком. Обеспечивает учёт автомобилей, водителей и заказов с разграничением ролей (администратор, диспетчер, водитель).</p>
+            </div>
+            <div class="section">
+                <h2>🔗 Навигация</h2>
+                <div class="links">
+                    <a href="glossary.html">📖 Глоссарий</a>
+                    <a href="requirements.html">⚙️ Функциональные требования</a>
+                    <a href="database.html">🗄️ Схема базы данных</a>
+                    <a href="github-pages-course.html">🎓 Курс GitHub Pages</a>
+                    <a href="https://github.com/zhulegoalina/zhulego_kalchevskaya_code">💻 Репозиторий с кодом</a>
+                    <a href="https://github.com/fpmi-tpmp2026/tpmp-gr10a-lab4-zhulego_kalchevskaya/wiki">📚 Wiki проекта</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Лабораторная работа №4 | Вариант 1 «Автопарк» | Жулего Алина & Кальчевская Полина</p>
+        </div>
+    </div>
 </body>
 </html>

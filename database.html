@@ -1,9 +1,21 @@
 <!DOCTYPE html>
-<html><head><title>Схема БД</title></head>
+<html lang="ru">
+<head><meta charset="UTF-8"><title>Схема БД</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; background: #f0f2f5; }
+.container { max-width: 900px; margin: auto; background: white; border-radius: 15px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+h1 { color: #2c3e50; border-left: 4px solid #667eea; padding-left: 15px; }
+img { max-width: 100%; margin: 20px 0; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.back { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 8px; }
+</style>
+</head>
 <body>
-<h1>Схема базы данных</h1>
+<div class="container">
+<h1>🗄️ Схема базы данных</h1>
 <img src="docs/AutoparkDB.svg" alt="Схема БД">
-<p>Таблицы: users, cars, drivers, orders.</p>
-<a href="index.html">На главную</a>
+<p><strong>Таблицы:</strong> users, cars, drivers, orders.</p>
+<p><strong>Связи:</strong> orders.driver_id → drivers.id, orders.car_id → cars.id</p>
+<a href="index.html" class="back">← На главную</a>
+</div>
 </body>
 </html>
